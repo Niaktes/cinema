@@ -31,14 +31,14 @@ public class UserController {
     public String register(@ModelAttribute User user, Model model) {
         Optional<User> savedUser = userService.save(user);
         if (savedUser.isEmpty()) {
-            model.addAttribute("message", "Пользователь с такой почтой уже существует");
+            model.addAttribute("error", "Пользователь с такой почтой уже существует");
             return "users/register";
         }
         return "redirect:/users/login";
     }
 
     @GetMapping("/login")
-    public String geetLoginPage() {
+    public String getLoginPage() {
         return "users/login";
     }
 
@@ -46,12 +46,12 @@ public class UserController {
     public String loginUser(@ModelAttribute User user, Model model, HttpServletRequest request) {
         Optional<User> userOptional = userService.findByEmailAndPassword(user.getEmail(), user.getPassword());
         if (userOptional.isEmpty()) {
-            model.addAttribute("message", "Почта или пароль введены неверно!");
+            model.addAttribute("error", "Почта или пароль введены неверно!");
             return "users/login";
         }
         HttpSession session = request.getSession();
         session.setAttribute("user", userOptional.get());
-        return "redirect:/sessions/list";
+        return "redirect:/";
     }
 
     @GetMapping("/logout")

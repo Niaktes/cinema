@@ -1,6 +1,5 @@
 package ru.job4j.cinema.repository;
 
-import java.util.Optional;
 import org.springframework.stereotype.Repository;
 import org.sql2o.Connection;
 import org.sql2o.Query;
@@ -17,11 +16,10 @@ public class Sql2oGenreRepository implements GenreRepository {
     }
 
     @Override
-    public Optional<Genre> findById(int id) {
+    public Genre findById(int id) {
         try (Connection connection = sql2o.open()) {
             Query query = connection.createQuery("SELECT * FROM genres WHERE id = :id");
-            Genre genre = query.addParameter("id", id).executeAndFetchFirst(Genre.class);
-            return Optional.ofNullable(genre);
+            return query.addParameter("id", id).executeAndFetchFirst(Genre.class);
         }
     }
 

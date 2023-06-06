@@ -41,7 +41,8 @@ public class SimpleFileService implements FileService {
     public Collection<FileDto> getAllFiles() {
         Collection<File> files = fileRepository.getAll();
         return files.stream()
-                .map(file -> new FileDto(file.getName(), readFileAsBytes(file.getPath()))).toList();
+                .map(file -> new FileDto(file.getName(), readFileAsBytes(file.getPath())))
+                .toList();
     }
 
 }

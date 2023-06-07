@@ -21,8 +21,8 @@
         <div class="collapse navbar-collapse">
           <div class="navbar-nav me-auto">
             <a class="nav-link text-secondary" href="/">Главная</a>
-            <a class="nav-link text-secondary" th:href="@{/sessions}">Расписание сеансов</a>
-            <a class="nav-link text-primary" th:href="@{/films}">Кинотека</a>
+            <a class="nav-link text-primary" th:href="@{/sessions}">Расписание сеансов</a>
+            <a class="nav-link text-secondary" th:href="@{/films}">Кинотека</a>
           </div>
           <div class="d-flex" th:if="${user.fullName == 'Гость'}">
             <a class="nav-link text-secondary me-3" th:href="@{/users/register}">Регистрация</a>
@@ -40,15 +40,24 @@
         <div class="row border border-secondary rounded">
           <div class="mb-2"></div>
           <div class="col-3">
-            <img th:src="@{/files/{fileId}(fileId=${film.posterId})}" width="220" class="rounded mx-auto d-block">
+            <figure class="figure">
+              <img th:src="@{/files/{fileId}(fileId=${film.posterId})}" width="220" class="rounded mx-auto d-block">
+              <figcaption class="figure-caption text-center" th:text="${film.name}"></figcaption>
+            </figure>
           </div>
           <div class="col-9">
-            <span class="fs-4" th:text="${film.name}"></span>
-            <br><span class="fw-light" th:text="${film.description}"></span></br>
-            <span class="fw-semibold">Год выпуска: <span class="fw-lighter" th:text="${film.year}"></span></span></br>
-            <span class="fw-semibold">Жанр: <span class="fw-lighter" th:text="${film.genre}"></span></span></br>
-            <span class="fw-light" th:text="${film.minimalAge} + '+'"></span></br>
-            <span class="fw-light" th:text="${film.durationInMinutes} + ' минут'"></span>
+            <div th:each="hall: ${halls}">
+              <p class="text-center fw-semibold" th:text="${hall.name}">
+              <div class="row">
+                <div th:each="filmSession: ${filmSessions}" th:if="${filmSession.filmId == film.id && filmSession.hallId == hall.id}" class="col-3">
+                  <a class="badge bg-secondary bg-gradient font-monospace fs-6 text-light text-decoration-none" style="width: 8rem;" th:href="@{/sessions/{id}(id=${filmSession.id})}">
+                    <span th:text="${filmSession.startTime}"></span></br>
+                    <span th:text="${filmSession.price} + ' руб'"></span>
+                  </a>
+                </div>
+              </div>
+              </p>
+            </div>
           </div>
           <div class="mb-2"></div>
         </div>

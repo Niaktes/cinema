@@ -26,7 +26,7 @@ public class Sql2oTicketRepository implements TicketRepository {
     public Optional<Ticket> save(Ticket ticket) {
         try (Connection connection = sql2o.open()) {
             String sql = """
-                    INSERT INTO tickets(session_id, row_number, place_number, user_id) 
+                    INSERT INTO tickets(session_id, row_number, place_number, user_id)
                     VALUES (:sessionId, :rowNumber, :placeNumber, :userId)
                     """;
             Query query = connection.createQuery(sql, true);
@@ -58,6 +58,16 @@ public class Sql2oTicketRepository implements TicketRepository {
         try (Connection connection = sql2o.open()) {
             Query query = connection.createQuery("SELECT * FROM tickets");
             return query.setColumnMappings(Ticket.COLUMN_MAPPING).executeAndFetch(Ticket.class);
+        }
+    }
+
+    @Override
+    public boolean deleteById(int id) {
+        try (Connection connection = sql2o.open()) {
+            Query query = connection.createQuery("DELETE FROM tickets WHERE id = :id");
+            query.addParameter("id", id);
+            int affectedRows = query.executeUpdate().getResult();
+            return affectedRows > 0;
         }
     }
 

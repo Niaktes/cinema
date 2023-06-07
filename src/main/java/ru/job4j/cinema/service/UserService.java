@@ -9,6 +9,4 @@ public interface UserService {
 
     Optional<User> findByEmailAndPassword(String email, String password);
 
-    boolean deleteByEmailAndPassword(String email, String password);
-
 }

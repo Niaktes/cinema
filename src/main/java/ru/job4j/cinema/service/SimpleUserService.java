@@ -24,9 +24,4 @@ public class SimpleUserService implements UserService {
         return userRepository.findByEmailAndPassword(email, password);
     }
 
-    @Override
-    public boolean deleteByEmailAndPassword(String email, String password) {
-        return userRepository.deleteByEmailAndPassword(email, password);
-    }
-
 }

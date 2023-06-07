@@ -92,8 +92,9 @@ public class FilmSession {
             return false;
         }
         FilmSession that = (FilmSession) o;
-        return id == that.id && Objects.equals(filmId, that.filmId)
-                && Objects.equals(hallId, that.hallId)
+        return id == that.id
+                && filmId == that.filmId
+                && hallId == that.hallId
                 && Objects.equals(startTime, that.startTime);
     }
 

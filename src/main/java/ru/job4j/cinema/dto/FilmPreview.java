@@ -18,18 +18,6 @@ public class FilmPreview {
     public FilmPreview() {
     }
 
-    public FilmPreview(int id, String name, String description, int year, String genre, int minimalAge,
-                       int durationInMinutes, int posterId) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.year = year;
-        this.genre = genre;
-        this.minimalAge = minimalAge;
-        this.durationInMinutes = durationInMinutes;
-        this.posterId = posterId;
-    }
-
     public FilmPreview(Film film, Genre genre) {
         this.id = film.getId();
         this.name = film.getName();

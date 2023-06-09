@@ -56,7 +56,8 @@ public class Sql2oTicketRepository implements TicketRepository {
     @Override
     public Collection<Ticket> findAllBySessionId(int id) {
         try (Connection connection = sql2o.open()) {
-            Query query = connection.createQuery("SELECT * FROM tickets");
+            Query query = connection.createQuery("SELECT * FROM tickets WHERE session_id = :sessionId");
+            query.addParameter("sessionId", id);
             return query.setColumnMappings(Ticket.COLUMN_MAPPING).executeAndFetch(Ticket.class);
         }
     }

@@ -1,11 +1,9 @@
 package ru.job4j.cinema.service;
 
 import java.util.Collection;
-import java.util.Optional;
 import org.springframework.stereotype.Service;
 import ru.job4j.cinema.dto.FilmPreview;
 import ru.job4j.cinema.model.Film;
-import ru.job4j.cinema.model.Genre;
 import ru.job4j.cinema.repository.FilmRepository;
 
 @Service
@@ -20,14 +18,9 @@ public class SimpleFilmService implements FilmService {
     }
 
     @Override
-    public Optional<FilmPreview> getFilmById(int id) {
-        Optional<Film> filmOptional = filmRepository.findById(id);
-        if (filmOptional.isEmpty()) {
-            return Optional.empty();
-        }
-        Genre genre = genreService.findById(filmOptional.get().getGenreId());
-        FilmPreview filmPreview = new FilmPreview(filmOptional.get(), genre);
-        return Optional.of(filmPreview);
+    public FilmPreview getFilmById(int id) {
+        Film film = filmRepository.findById(id);
+        return new FilmPreview(film, genreService.findById(film.getGenreId()));
     }
 
     @Override

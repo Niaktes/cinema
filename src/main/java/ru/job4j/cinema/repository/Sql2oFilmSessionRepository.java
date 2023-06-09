@@ -1,7 +1,6 @@
 package ru.job4j.cinema.repository;
 
 import java.util.Collection;
-import java.util.Optional;
 import org.springframework.stereotype.Repository;
 import org.sql2o.Connection;
 import org.sql2o.Query;
@@ -18,13 +17,12 @@ public class Sql2oFilmSessionRepository implements FilmSessionRepository {
     }
 
     @Override
-    public Optional<FilmSession> findById(int id) {
+    public FilmSession findById(int id) {
         try (Connection connection = sql2o.open()) {
             Query query = connection.createQuery("SELECT * FROM film_sessions WHERE id = :id");
             query.addParameter("id", id);
             query.setColumnMappings(FilmSession.COLUMN_MAPPING);
-            FilmSession filmSession = query.executeAndFetchFirst(FilmSession.class);
-            return Optional.ofNullable(filmSession);
+            return query.executeAndFetchFirst(FilmSession.class);
         }
     }
 

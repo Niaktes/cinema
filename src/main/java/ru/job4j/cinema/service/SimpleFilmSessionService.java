@@ -2,7 +2,6 @@ package ru.job4j.cinema.service;
 
 import java.time.format.DateTimeFormatter;
 import java.util.Collection;
-import java.util.Optional;
 import org.springframework.stereotype.Service;
 import ru.job4j.cinema.dto.FilmSessionDto;
 import ru.job4j.cinema.model.FilmSession;
@@ -20,13 +19,8 @@ public class SimpleFilmSessionService implements FilmSessionService {
     }
 
     @Override
-    public Optional<FilmSessionDto> findSessionById(int id) {
-        Optional<FilmSession> filmSessionOptional = filmSessionRepository.findById(id);
-        if (filmSessionOptional.isEmpty()) {
-            return Optional.empty();
-        }
-        FilmSession filmSession = filmSessionOptional.get();
-        return Optional.of(createFromFilmSession(filmSession));
+    public FilmSessionDto findSessionById(int id) {
+        return createFromFilmSession(filmSessionRepository.findById(id));
     }
 
     @Override
@@ -39,8 +33,11 @@ public class SimpleFilmSessionService implements FilmSessionService {
 
     private FilmSessionDto createFromFilmSession(FilmSession filmSession) {
         return new FilmSessionDto(
-                filmSession.getId(), filmSession.getFilmId(), filmSession.getHallId(),
-                filmSession.getStartTime().format(FORMATTER), filmSession.getEndTime().format(FORMATTER),
+                filmSession.getId(),
+                filmSession.getFilmId(),
+                filmSession.getHallId(),
+                filmSession.getStartTime().format(FORMATTER),
+                filmSession.getEndTime().format(FORMATTER),
                 filmSession.getPrice()
         );
     }

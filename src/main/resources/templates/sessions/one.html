@@ -81,6 +81,9 @@
             <div class="d-grid gap-2 mt-3" th:if="${user.fullName == 'Гость'}">
               <a class="btn btn-outline-danger" th:href="@{/users/login}">Для покупки билета войдите в аккаунт</a>
             </div>
+            <div class="d-grid gap-2 mt-3">
+              <a class="btn btn-danger" th:href="@{/sessions}">Отмена</a>
+            </div>
             <div class="col-3"></div>
           </form>
         </div>

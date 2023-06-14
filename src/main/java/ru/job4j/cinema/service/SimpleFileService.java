@@ -3,7 +3,6 @@ package ru.job4j.cinema.service;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.Collection;
 import java.util.Optional;
 import org.springframework.stereotype.Service;
 import ru.job4j.cinema.dto.FileDto;
@@ -35,14 +34,6 @@ public class SimpleFileService implements FileService {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-    }
-
-    @Override
-    public Collection<FileDto> getAllFiles() {
-        Collection<File> files = fileRepository.getAll();
-        return files.stream()
-                .map(file -> new FileDto(file.getName(), readFileAsBytes(file.getPath())))
-                .toList();
     }
 
 }

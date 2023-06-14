@@ -42,7 +42,8 @@ public class FilmSessionController {
         FilmSessionDto filmSession = filmSessionService.findSessionById(id);
         Collection<TicketDto> ticketsSorted = ticketService.findAllBySessionId(id)
                 .stream()
-                .sorted(Comparator.comparing(TicketDto::getRowNumber).thenComparing(TicketDto::getPlaceNumber))
+                .sorted(Comparator.comparing(TicketDto::getRowNumber)
+                        .thenComparing(TicketDto::getPlaceNumber))
                 .toList();
         model.addAttribute("filmSession", filmSession);
         model.addAttribute("film", filmService.getFilmById(filmSession.getFilmId()));

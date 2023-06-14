@@ -24,8 +24,8 @@ public class TicketController {
     public String create(@ModelAttribute Ticket ticket, Model model) {
         Optional<TicketDto> ticketOptional = ticketService.save(ticket);
         if (ticketOptional.isEmpty()) {
-            model.addAttribute("error", "Кажется, указанное вами место уже занято. Пожалуйста, выберите " +
-                    "другое место и повторите покупку билета");
+            model.addAttribute("error", "Кажется, указанное вами место уже занято. Пожалуйста, выберите "
+                    + "другое место и повторите покупку билета");
             return "tickets/buyFail";
         }
         model.addAttribute("ticket", ticketOptional.get());

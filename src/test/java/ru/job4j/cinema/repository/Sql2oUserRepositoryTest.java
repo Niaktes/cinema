@@ -70,13 +70,16 @@ class Sql2oUserRepositoryTest {
     }
 
     @Test
-    void whenUserDeletedThenGetTrue() {
+    void whenUserDeletedThenGetTrueAndGetUserOptional() {
         sql2oUserRepository.save(user);
         boolean deleted = sql2oUserRepository.deleteByEmailAndPassword(user.getEmail(), user.getPassword());
         boolean deletedAgain = sql2oUserRepository.deleteByEmailAndPassword(
                 user.getEmail(), user.getPassword());
+        Optional<User> savedUser = sql2oUserRepository.findByEmailAndPassword(user.getEmail(),
+                user.getPassword());
         assertThat(deleted).isTrue();
         assertThat(deletedAgain).isFalse();
+        assertThat(savedUser).isEmpty();
     }
 
 }

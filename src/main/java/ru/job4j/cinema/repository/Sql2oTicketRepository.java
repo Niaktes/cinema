@@ -62,14 +62,4 @@ public class Sql2oTicketRepository implements TicketRepository {
         }
     }
 
-    @Override
-    public boolean deleteById(int id) {
-        try (Connection connection = sql2o.open()) {
-            Query query = connection.createQuery("DELETE FROM tickets WHERE id = :id");
-            query.addParameter("id", id);
-            int affectedRows = query.executeUpdate().getResult();
-            return affectedRows > 0;
-        }
-    }
-
 }

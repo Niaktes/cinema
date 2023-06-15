@@ -14,5 +14,5 @@ INSERT INTO halls(name, row_count, place_count, description) VALUES
 ('hallName2', 20, 20, 'description2');
 
 INSERT INTO film_sessions(film_id, hall_id, start_time, end_time, price) VALUES
-(1, 1, '2001-01-01 01:01:01-03', '2001-01-01 11:11:11-03', 100),
-(2, 2, '2002-02-02 02:02:02-03', '2002-02-02 12:12:12-03', 200);
+(1, 1, '2001-01-01 01:01:01+03', '2001-01-01 11:11:11+03', 100),
+(2, 2, '2002-02-02 02:02:02+03', '2002-02-02 12:12:12+03', 200);

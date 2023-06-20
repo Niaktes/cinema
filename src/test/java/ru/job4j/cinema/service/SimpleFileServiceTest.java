@@ -1,5 +1,7 @@
 package ru.job4j.cinema.service;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Optional;
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -21,7 +23,8 @@ class SimpleFileServiceTest {
     public void initRepository() {
         fileRepository = mock(FileRepository.class);
         simpleFileService = new SimpleFileService(fileRepository);
-        file = new File("test.txt", "src\\test\\resources\\test.txt");
+        String testFilePath = Paths.get("src", "test", "resources", "test.txt").toFile().getAbsolutePath();
+        file = new File("test.txt", testFilePath);
     }
 
     @Test

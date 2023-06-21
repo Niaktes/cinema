@@ -1,6 +1,5 @@
 package ru.job4j.cinema.service;
 
-import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Optional;
 import static org.assertj.core.api.Assertions.*;

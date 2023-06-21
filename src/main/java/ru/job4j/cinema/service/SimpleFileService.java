@@ -21,11 +21,7 @@ public class SimpleFileService implements FileService {
     @Override
     public Optional<FileDto> getFileById(int id) {
         Optional<File> fileOptional = fileRepository.findById(id);
-        if (fileOptional.isEmpty()) {
-            return Optional.empty();
-        }
-        byte[] content = readFileAsBytes(fileOptional.get().getPath());
-        return Optional.of(new FileDto(fileOptional.get().getName(), content));
+        return fileOptional.map(f -> new FileDto(f.getName(), readFileAsBytes(f.getPath())));
     }
 
     private byte[] readFileAsBytes(String path) {

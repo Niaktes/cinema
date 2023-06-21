@@ -27,19 +27,14 @@ public class SimpleTicketService implements TicketService {
     @Override
     public Optional<TicketDto> save(Ticket ticket) {
         Optional<Ticket> ticketOptional = ticketRepository.save(ticket);
-        if (ticketOptional.isEmpty()) {
-            return Optional.empty();
-        }
-        return Optional.of(createFromTicket(ticketOptional.get()));
+        return ticketOptional.map(this::createFromTicket);
     }
 
     @Override
     public Optional<TicketDto> findById(int id) {
         Optional<Ticket> ticketOptional = ticketRepository.findById(id);
-        if (ticketOptional.isEmpty()) {
-            return Optional.empty();
-        }
-        return Optional.of(createFromTicket(ticketOptional.get()));
+        return ticketOptional.map(this::createFromTicket);
+
     }
 
     @Override

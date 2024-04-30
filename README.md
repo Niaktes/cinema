@@ -74,6 +74,8 @@
 #### Искренне благодарю за внимание к моему проекту!
 
 ### Контакты для связи: 
-> Захаренко Сергей <br>
-email: Sergei.Rabota@gmail.com <br>
-Telegram: @Niaktes <br>
+> <a href="https://github.com/Niaktes/">Захаренко Сергей</a> <br>
+> Телефон: +7 995 299 07 34 <br>
+<a href="https://t.me/SZakharenko"><img src="https://seeklogo.com/images/T/telegram-logo-AD3D08A014-seeklogo.com.png" alt="Telegram" height="30"></a>
+<a href="https://wa.me/89265900734"><img src="https://seeklogo.com/images/W/whatsapp-icon-logo-6E793ACECD-seeklogo.com.png" alt="Whatsapp" height="30"></a>
+<a href="mailto:Sergei.Zakharenko.it@gmail.com"><img src="https://seeklogo.com/images/G/gmail-logo-0B5D69FF48-seeklogo.com.png" alt="Mail" height="30"></a>
